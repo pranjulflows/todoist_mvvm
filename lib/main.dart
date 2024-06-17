@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todoist_mvvm/core/routes.dart';
+import 'package:todoist_mvvm/di.dart';
 
-void main() {
+void main() async {
+  await _initEverything();
   runApp(const MyApp());
 }
 
@@ -13,9 +15,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: AppRouter.router,
-      routerDelegate: AppRouter.router.routerDelegate,
-      routeInformationParser: AppRouter.router.routeInformationParser,
-      routeInformationProvider: AppRouter.router.routeInformationProvider,
       title: 'Frello Board',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -23,4 +22,10 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+_initEverything() async {
+
+  /// get it instances
+  setupLocator();
 }
