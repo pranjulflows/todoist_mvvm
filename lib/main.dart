@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:todoist_mvvm/core/routes.dart';
 import 'package:todoist_mvvm/di.dart';
 
@@ -17,15 +18,14 @@ class MyApp extends StatelessWidget {
       routerConfig: AppRouter.router,
       title: 'Frello Board',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+          fontFamily: GoogleFonts.openSans().fontFamily),
     );
   }
 }
 
 _initEverything() async {
-
   /// get it instances
   setupLocator();
 }
