@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todoist_mvvm/core/routes.dart';
-import 'package:todoist_mvvm/di.dart';
+import 'package:todoist_mvvm/di/injection.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await _initEverything();
   runApp(const MyApp());
 }
@@ -27,5 +28,5 @@ class MyApp extends StatelessWidget {
 
 _initEverything() async {
   /// get it instances
-  setupLocator();
+  configureInjection();
 }

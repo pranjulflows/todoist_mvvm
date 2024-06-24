@@ -34,6 +34,7 @@ dependencies:
   google_fonts: ^6.2.1
   flutter_svg: ^2.0.10+1
   appflowy_board: ^0.1.2
+  injectable: ^2.4.2
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +47,8 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
   build_runner: ^2.4.11
+  injectable_generator: 2.6.1
+  logger: ^2.0.2
   freezed: ^2.5.2
   json_serializable: ^6.8.0
 

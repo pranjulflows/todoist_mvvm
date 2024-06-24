@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todoist_mvvm/core/app_assets.dart';
+import 'package:todoist_mvvm/core/routes.dart';
 import 'package:todoist_mvvm/core/routes_path.dart';
-import 'package:todoist_mvvm/di.dart';
+import 'package:todoist_mvvm/di/injection.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,11 +16,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    moveToHome();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
+    moveToHome(context);
     return Scaffold(
       body: Center(
         child: SizedBox(
@@ -34,9 +36,9 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  moveToHome() {
+  moveToHome(BuildContext context) {
     Future.delayed(const Duration(seconds: 2), () {
-      locator<GoRouter>().go(PAGES.board.screenPath);
+      context.go(PAGES.board.screenPath);
     });
   }
 }

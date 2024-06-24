@@ -1,6 +1,9 @@
 class AppString {
   AppString._();
 
+  // App String
+  static const addTask = 'Add';
+
   //Api call error
   static const cancelRequest = "Request to API server was cancelled";
   static const connectionTimeOut = "Connection timeout with API server";

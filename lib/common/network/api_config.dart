@@ -7,7 +7,7 @@ class ApiConfig {
   static const String baseUrl = "https://api.todoist.com/rest/v2";
   static const Duration receiveTimeout = Duration(milliseconds: 15 * 1000);
   static const Duration connectionTimeout = Duration(milliseconds: 15 * 1000);
-  static const String tasks = '/users';
+  static const String tasks = '/tasks';
   static const String projectId = '2334848817'; /// default projectId
   static const String projects = '/projects';
 

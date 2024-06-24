@@ -1,18 +1,20 @@
-import 'package:dio/dio.dart' show Dio, ResponseType;
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:todoist_mvvm/common/network/api_config.dart';
+import 'package:todoist_mvvm/common/network/dio_interceptor.dart';
 
-@singleton
-class DioClient {
-  final Dio dio;
-
-  DioClient(this.dio) {
+@module
+abstract class DioProvider {
+  @singleton
+  Dio dio() {
+    Dio dio = Dio();
     dio
       ..options.baseUrl = ApiConfig.baseUrl
       ..options.headers = ApiConfig.header
       ..options.connectTimeout = ApiConfig.connectionTimeout
       ..options.receiveTimeout = ApiConfig.receiveTimeout
+      ..interceptors.add(DioInterceptor())
       ..options.responseType = ResponseType.json;
-      // ..interceptors.add(DioInterceptor());
+    return dio;
   }
 }
