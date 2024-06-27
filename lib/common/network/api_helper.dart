@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:todoist_mvvm/common/network/dio_exception.dart';
 import 'package:todoist_mvvm/core/app_extension.dart';
-import 'package:todoist_mvvm/data/model/task.dart';
 
 abstract mixin class ApiHelper<T> {
   late final T data;

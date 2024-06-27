@@ -1,26 +1,37 @@
-import 'package:flutter/cupertino.dart';
+import 'package:todoist_mvvm/common/bloc/generic_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todoist_mvvm/common/network/api_result.dart';
 
-enum Status { empty, loading, failure, success }
+enum ApiOperation { select, create, update, delete }
 
-/// Generic bloc implementation
-///
-@immutable
-class GenericBlocState<T> {
-  final T? data;
-  final String? error;
-  final Status status;
+typedef Emit<T> = Emitter<GenericBlocState<T>>;
 
-  const GenericBlocState({this.data, this.error, required this.status});
+mixin BlocHelper<T> {
+  ApiOperation operation = ApiOperation.select;
 
-  factory GenericBlocState.empty() =>
-      const GenericBlocState(status: Status.empty);
+  _checkSuccessOrFailure(ApiResult successOrFailure, Emit<T> emit) {
+    successOrFailure.when(success: (_) {
+      emit(GenericBlocState.success(null));
+    }, failure: (String error) {
+      emit(GenericBlocState.failure(error));
+    });
+  }
 
-  factory GenericBlocState.loading() =>
-      const GenericBlocState(status: Status.loading);
+  Future<void> getItems(
+      Future<ApiResult<List<T>>> apiCallback, Emit<T> emit) async {
+    operation = ApiOperation.select;
+    emit(GenericBlocState.loading());
 
-  factory GenericBlocState.failure(String error) =>
-      GenericBlocState(status: Status.failure, error: error);
+    final successOrFailure = await apiCallback;
 
-  factory GenericBlocState.success(T? data) =>
-      GenericBlocState(status: Status.success, data: data);
+    successOrFailure.when(success: (items) {
+      if (items.isEmpty) {
+        emit(GenericBlocState.empty());
+      } else {
+        emit(GenericBlocState.success(items));
+      }
+    }, failure: (String error) {
+      emit(GenericBlocState.failure(error));
+    });
+  }
 }
