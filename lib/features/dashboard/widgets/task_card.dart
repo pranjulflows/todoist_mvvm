@@ -5,8 +5,6 @@ import 'package:todoist_mvvm/core/app_assets.dart';
 import 'package:todoist_mvvm/core/constants.dart';
 import 'package:todoist_mvvm/core/utils.dart';
 
-
-
 class TaskCard extends StatelessWidget {
   final String title;
   final String dateTime;
@@ -21,7 +19,7 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
@@ -31,7 +29,7 @@ class TaskCard extends StatelessWidget {
           offset: const Offset(4.0, 4.0), // shadow direction: bottom right
         ),
       ], borderRadius: BorderRadius.circular(10), color: Colors.white),
-      width: Utils.getWidth(context),
+      width: Utils.getWidth(context, percent: 80),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
